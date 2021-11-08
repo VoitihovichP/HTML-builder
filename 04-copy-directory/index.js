@@ -23,7 +23,7 @@ async function createFolder() {
     });
 }
 
-function copyFiles() {
+async function copyFiles() {
     fs.readdir(path.join(__dirname, 'files'), {withFileTypes: true}, (err, files) => {
         if(err) {
             console.log(err);
