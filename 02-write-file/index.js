@@ -18,20 +18,21 @@ fs.writeFile(
     }
 );
 
-rl.question('Привет, введи свой текст:', input => {
-    rl.on('line', input => {
-        if(input === 'exit') {
-            console.log('Уже уходишь? Ну пока :(');
-            process.exit();
+console.log('Привет, введи свой текст:');
+rl.on('line', input => {
+    if(input === 'exit') {
+        console.log('Уже уходишь? Ну пока :(');
+        process.exit();
+    }
+
+    const textPath = path.join(__dirname, 'text.txt');
+    fs.appendFile(
+        textPath,
+        `${input}\n`,
+        err => {
+            if (err) throw err;
         }
-        fs.appendFile(
-            path.join(__dirname, 'text.txt'),
-            `\n${input}`,
-            err => {
-                if (err) throw err;
-            }
-        );
-    })
-})
+    );
+});
 
 process.on('exit', () => console.log('\nДо новых встречь'));

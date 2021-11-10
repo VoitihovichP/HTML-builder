@@ -4,6 +4,7 @@ const fsPromises = require('fs').promises;
 
 
 async function copyDir() {
+    await fsPromises.rm(path.join(__dirname, 'files-copy'), { recursive: true, force: true });
     fs.stat(path.join(__dirname, 'files-copy'), (err, stats) => {
         if(err) {
             createFolder();
